@@ -460,7 +460,8 @@
         </label>
         <button type="submit" class="btn btn--primary btn--block">Send my quote request</button>
         <p class="cta__form-note">We reply within 30 mins during business hours.</p>
-        <p class="cta__form-success" id="formSuccess" hidden>✅ Thanks! We've got your request — we'll be in touch shortly.</p>
+        <p class="cta__form-success" id="formSuccess" role="status" hidden>✅ Thanks! We've got your request — we'll be in touch shortly.</p>
+        <p class="cta__form-error" id="formError" role="alert" hidden></p>
       </form>
     </div>
   </section>
@@ -661,11 +662,6 @@
         }
     }
 </style>
-
-<script>
-    // Auto-update copyright year
-    document.getElementById('year').textContent = new Date().getFullYear();
-</script>
 
   <!-- Floating WhatsApp button -->
   <a class="float-whatsapp" href="https://wa.me/27722389894?text=Hi%20Yvonne%2C%20I%27d%20like%20to%20get%20a%20cleaning%20quote" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
