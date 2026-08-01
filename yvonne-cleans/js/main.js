@@ -3,6 +3,8 @@
 (function () {
   'use strict';
 
+  const WHATSAPP_NUMBER = '27722389894';
+
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
@@ -101,18 +103,30 @@
   }
 
   /* ---- Quote form ---- */
+  const MAX_LENGTHS = { name: 80, phone: 20, service: 60, message: 1000 };
+  const PHONE_RE = /^[0-9+()\-.\s]{7,20}$/;
+
+  // Strip control characters and clamp length before the value is used anywhere.
+  const clean = (value, max) =>
+    value.replace(/[\u0000-\u001F\u007F-\u009F]/g, ' ').trim().slice(0, max);
+
   const form = $('#quoteForm');
   const success = $('#formSuccess');
   if (form && success) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const data = new FormData(form);
-      const name = (data.get('name') || '').toString().trim();
-      const phone = (data.get('phone') || '').toString().trim();
-      const service = (data.get('service') || '').toString().trim();
-      const message = (data.get('message') || '').toString().trim();
+      const name = clean((data.get('name') || '').toString(), MAX_LENGTHS.name);
+      const phone = clean((data.get('phone') || '').toString(), MAX_LENGTHS.phone);
+      const service = clean((data.get('service') || '').toString(), MAX_LENGTHS.service);
+      const message = clean((data.get('message') || '').toString(), MAX_LENGTHS.message);
 
-      if (!name || !phone || !service) {
+      const serviceSelect = $('select[name="service"]', form);
+      const serviceOptions = serviceSelect
+        ? $$('option', serviceSelect).map(o => o.value.trim()).filter(Boolean)
+        : [];
+
+      if (!name || !PHONE_RE.test(phone) || !serviceOptions.includes(service)) {
         // visual feedback
         form.animate(
           [
@@ -135,7 +149,7 @@
         `Service: ${service}\n` +
         `Details: ${message || '—'}`
       );
-      const waUrl = `https://wa.me/27722389894?text=${waText}`;
+      const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`;
 
       success.hidden = false;
       form.reset();
@@ -143,7 +157,7 @@
 
       // Open WhatsApp in a new tab after a short pause
       setTimeout(() => {
-        window.open(waUrl, '_blank', 'noopener');
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
       }, 800);
     });
   }
