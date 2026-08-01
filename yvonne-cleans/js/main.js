@@ -137,6 +137,11 @@
       );
       const waUrl = `https://wa.me/27722389894?text=${waText}`;
 
+      // Keep the visible fallback link in sync with the pre-filled message,
+      // so popup blockers or a missing WhatsApp app don't strand the user.
+      const waLink = $('#formWhatsappLink');
+      if (waLink) waLink.href = waUrl;
+
       success.hidden = false;
       form.reset();
       success.scrollIntoView({ behavior: 'smooth', block: 'center' });
