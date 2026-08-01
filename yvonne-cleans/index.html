@@ -460,12 +460,21 @@
         </label>
         <button type="submit" class="btn btn--primary btn--block">Send my quote request</button>
         <p class="cta__form-note">We reply within 30 mins during business hours.</p>
-        <p class="cta__form-success" id="formSuccess" hidden>✅ Thanks! We've got your request — we'll be in touch shortly.</p>
+        <div class="cta__form-success" id="formSuccess" hidden>
+          <p>✅ Thanks! We've got your request — we'll be in touch shortly.</p>
+          <p class="cta__form-fallback">
+            WhatsApp didn't open?
+            <a id="formWhatsappLink" href="https://wa.me/27722389894" target="_blank" rel="noopener">Open the chat here</a>.
+          </p>
+          <p class="cta__form-fallback">
+            No WhatsApp? Email <a href="mailto:yvonnepmabena@gmail.com">yvonnepmabena@gmail.com</a>
+            or call <a href="tel:+27722389894">072 238 9894</a>.
+          </p>
+        </div>
       </form>
     </div>
   </section>
   <!-- Footer -->
- <!-- Footer -->
 <footer class="footer">
     <div class="container footer__inner">
         <div class="footer__brand">
@@ -533,139 +542,6 @@
         </div>
     </div>
 </footer>
-
-<!-- ========== STYLES (Keep these in your CSS) ========== -->
-<style>
-    /* ---- Footer Bottom Layout ---- */
-    .footer__bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 1.2rem 0;
-        margin-top: 1rem;
-        background: rgba(0, 0, 0, 0.15);
-        backdrop-filter: blur(4px);
-    }
-
-    .footer__bottom-inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 1rem 1.5rem;
-        font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.7);
-    }
-
-    /* ---- The "Created by" Wrapper ---- */
-    .footer__credit-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .credit__label {
-        font-size: 0.85rem;
-        font-weight: 300;
-        letter-spacing: 0.5px;
-        color: rgba(255, 255, 255, 0.5);
-        text-transform: uppercase;
-    }
-
-    /* ---- THE COOL BADGE (Now showing "Bapela Digital") ---- */
-    .credit__badge {
-        position: relative;
-        display: inline-block;
-        padding: 0.4rem 1.2rem;
-        font-weight: 700;
-        font-size: 1rem;
-        letter-spacing: 0.5px;
-        color: #fff;
-        background: linear-gradient(135deg, #1f5e3a, #2e7d4f, #3ba362);
-        border-radius: 50px;
-        box-shadow: 0 0 15px rgba(46, 125, 79, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.1);
-        text-decoration: none;
-        transition: all 0.3s ease;
-        overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-    }
-
-    /* Shimmer animation */
-    .badge__shimmer {
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 60%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-        transform: skewX(-25deg);
-        transition: left 0.8s ease;
-        z-index: 2;
-        pointer-events: none;
-    }
-
-    .credit__badge:hover .badge__shimmer {
-        left: 200%;
-    }
-
-    .credit__badge:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 30px rgba(46, 125, 79, 0.6), 0 0 60px rgba(46, 125, 79, 0.2);
-        border-color: rgba(255, 255, 255, 0.4);
-        color: #fff;
-    }
-
-    /* Pulsing background glow */
-    .credit__badge::before {
-        content: '';
-        position: absolute;
-        inset: -2px;
-        border-radius: 50px;
-        background: linear-gradient(135deg, #2e7d4f, #5cb885, #2e7d4f);
-        background-size: 300% 300%;
-        z-index: -1;
-        animation: glowPulse 3s ease-in-out infinite;
-        filter: blur(6px);
-        opacity: 0.6;
-        transition: opacity 0.4s ease;
-    }
-
-    .credit__badge:hover::before {
-        opacity: 1;
-        animation-duration: 1.5s;
-    }
-
-    @keyframes glowPulse {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    /* ---- Responsive ---- */
-    @media (max-width: 768px) {
-        .footer__bottom-inner {
-            flex-direction: column;
-            text-align: center;
-            gap: 0.8rem;
-        }
-
-        .credit__badge {
-            font-size: 0.9rem;
-            padding: 0.3rem 1rem;
-        }
-
-        .footer__tagline {
-            font-size: 0.8rem;
-        }
-    }
-</style>
-
-<script>
-    // Auto-update copyright year
-    document.getElementById('year').textContent = new Date().getFullYear();
-</script>
 
   <!-- Floating WhatsApp button -->
   <a class="float-whatsapp" href="https://wa.me/27722389894?text=Hi%20Yvonne%2C%20I%27d%20like%20to%20get%20a%20cleaning%20quote" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
