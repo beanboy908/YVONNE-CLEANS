@@ -1,0 +1,9 @@
+{
+  "name": "yvonne-cleans-static-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static-site verification tooling for the Yvonne Cleans website.",
+  "scripts": {
+    "verify": "node scripts/verify-site.mjs"
+  }
+}
