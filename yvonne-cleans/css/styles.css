@@ -967,6 +967,17 @@ ul { margin: 0; padding: 0; list-style: none; }
   text-align: center;
   font-weight: 600;
 }
+.cta__form-error {
+  background: #fdecec;
+  color: #8c1c1c;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  margin: 14px 0 0;
+  text-align: center;
+  font-weight: 600;
+}
+.cta__form-error a { color: inherit; text-decoration: underline; }
 
 @media (max-width: 900px) {
   .cta__inner { grid-template-columns: 1fr; gap: 40px; }
