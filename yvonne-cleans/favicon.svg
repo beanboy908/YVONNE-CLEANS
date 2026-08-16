@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="title desc">
+  <title id="title">Yvonne Cleans logo</title>
+  <desc id="desc">Green circular cleaning brand mark with a white geometric centre.</desc>
+  <circle cx="50" cy="50" r="47" fill="#1f5e3a"/>
+  <path fill="#fff" d="M50 22 75 37v26L50 78 25 63V37z"/>
+  <path fill="#1f5e3a" d="M40 43h8v20h-8zm12 0h8v20h-8z"/>
+  <path fill="#5fb87a" d="M21 62q-10-10 0-22 10 12 0 22zm58-27q10-3 14 7-10-1-14-7z"/>
+</svg>
