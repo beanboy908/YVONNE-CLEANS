@@ -110,9 +110,11 @@
       const name = (data.get('name') || '').toString().trim();
       const phone = (data.get('phone') || '').toString().trim();
       const service = (data.get('service') || '').toString().trim();
+      const area = (data.get('area') || '').toString().trim();
+      const timing = (data.get('timing') || '').toString().trim();
       const message = (data.get('message') || '').toString().trim();
 
-      if (!name || !phone || !service) {
+      if (!name || !phone || !service || !area || !timing) {
         // visual feedback
         form.animate(
           [
@@ -133,6 +135,8 @@
         `Name: ${name}\n` +
         `Phone: ${phone}\n` +
         `Service: ${service}\n` +
+        `Area: ${area}\n` +
+        `Preferred timing: ${timing}\n` +
         `Details: ${message || '—'}`
       );
       const waUrl = `https://wa.me/27722389894?text=${waText}`;
