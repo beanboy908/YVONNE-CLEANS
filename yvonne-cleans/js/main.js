@@ -100,6 +100,18 @@
     }, 2500);
   }
 
+  /* ---- Service-card quote shortcuts ---- */
+  const quoteService = $('#quoteForm select[name="service"]');
+  const quoteFormSection = $('#contact');
+  $$('[data-quote-service]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (quoteService) quoteService.value = link.dataset.quoteService || '';
+      quoteFormSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.setTimeout(() => quoteService?.focus({ preventScroll: true }), 450);
+    });
+  });
+
   /* ---- Quote form ---- */
   const form = $('#quoteForm');
   const success = $('#formSuccess');
