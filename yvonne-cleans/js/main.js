@@ -181,6 +181,15 @@
     });
   }
 
+  /* ---- Offline app support ---- */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js').catch((error) => {
+        console.warn('Yvonne Cleans offline support could not be registered.', error);
+      });
+    });
+  }
+
   /* ---- Light parallax on hero (subtle, GPU-friendly) ---- */
   const heroBg = document.querySelector('.hero__bg');
   if (heroBg && window.matchMedia('(min-width: 900px)').matches) {
