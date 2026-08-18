@@ -115,7 +115,16 @@
   /* ---- Quote form ---- */
   const form = $('#quoteForm');
   const success = $('#formSuccess');
-  if (form && success) {
+  const formError = $('#formError');
+  if (form && success && formError) {
+    const requiredFields = ['name', 'phone', 'service', 'area', 'timing'];
+    const clearValidation = () => {
+      formError.hidden = true;
+      requiredFields.forEach((fieldName) => form.elements[fieldName]?.removeAttribute('aria-invalid'));
+    };
+
+    form.addEventListener('input', clearValidation);
+    form.addEventListener('change', clearValidation);
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const data = new FormData(form);
@@ -126,7 +135,13 @@
       const timing = (data.get('timing') || '').toString().trim();
       const message = (data.get('message') || '').toString().trim();
 
-      if (!name || !phone || !service || !area || !timing) {
+      const values = { name, phone, service, area, timing };
+      const missingFields = requiredFields.filter((fieldName) => !values[fieldName]);
+
+      if (missingFields.length) {
+        formError.hidden = false;
+        missingFields.forEach((fieldName) => form.elements[fieldName]?.setAttribute('aria-invalid', 'true'));
+        form.elements[missingFields[0]]?.focus();
         // visual feedback
         form.animate(
           [
@@ -140,6 +155,8 @@
         );
         return;
       }
+
+      clearValidation();
 
       // Build a WhatsApp message to Yvonne
       const waText = encodeURIComponent(
