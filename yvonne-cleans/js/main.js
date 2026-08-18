@@ -181,6 +181,29 @@
     });
   }
 
+  /* ---- Installable app prompt ---- */
+  const installAppButton = $('#install-app');
+  let installPrompt;
+
+  window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    installPrompt = event;
+    if (installAppButton) installAppButton.hidden = false;
+  });
+
+  installAppButton?.addEventListener('click', async () => {
+    if (!installPrompt) return;
+    installPrompt.prompt();
+    await installPrompt.userChoice;
+    installPrompt = null;
+    installAppButton.hidden = true;
+  });
+
+  window.addEventListener('appinstalled', () => {
+    installPrompt = null;
+    if (installAppButton) installAppButton.hidden = true;
+  });
+
   /* ---- Offline app support ---- */
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
