@@ -170,14 +170,11 @@
       );
       const waUrl = `https://wa.me/27722389894?text=${waText}`;
 
+      // Open WhatsApp immediately while this submit action still has the user's gesture.
+      window.open(waUrl, '_blank', 'noopener');
       success.hidden = false;
       form.reset();
       success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-      // Open WhatsApp in a new tab after a short pause
-      setTimeout(() => {
-        window.open(waUrl, '_blank', 'noopener');
-      }, 800);
     });
   }
 
